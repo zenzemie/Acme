@@ -94,7 +94,7 @@ export default function DashboardLayout() {
                 <DropdownMenuLabel className="font-normal">
                   <div className="flex flex-col space-y-1">
                     <p className="text-sm font-medium">User</p>
-                    <p className="text-xs text-muted-foreground">user@forgeai.dev</p>
+                    <p className="text-xs text-muted-foreground">user@acme.dev</p>
                   </div>
                 </DropdownMenuLabel>
                 <DropdownMenuSeparator />
