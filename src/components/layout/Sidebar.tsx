@@ -68,7 +68,7 @@ export default function Sidebar({ collapsed, onToggle }: SidebarProps) {
             exit={{ opacity: 0 }}
             className="text-sm font-semibold"
           >
-            ForgeAI
+            Acme
           </motion.span>
         )}
       </div>

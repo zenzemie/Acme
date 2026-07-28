@@ -1,0 +1,5 @@
+# Python dependencies for auxiliary scripts
+# These are optional - not required for the main application
+requests>=2.31.0
+pyyaml>=6.0
+click>=8.1

@@ -16,7 +16,7 @@ ReactDOM.createRoot(document.getElementById("root")!).render(
   <React.StrictMode>
     <BrowserRouter>
       <ConvexProvider client={convex}>
-        <ThemeProvider defaultTheme="dark" storageKey="forgeai-theme">
+        <ThemeProvider defaultTheme="dark" storageKey="acme-theme">
           <CommandPaletteProvider>
             <TooltipProvider delayDuration={200}>
               <App />

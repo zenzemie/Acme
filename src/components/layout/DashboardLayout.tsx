@@ -50,7 +50,7 @@ export default function DashboardLayout() {
         <header className="flex h-14 shrink-0 items-center justify-between border-b border-border/50 bg-background/80 backdrop-blur-xl px-6">
           <div className="flex items-center gap-3">
             <h1 className="text-sm font-medium text-foreground/80">
-              ForgeAI Workspace
+              Acme Platform
             </h1>
             <Badge variant="secondary" className="text-[10px]">
               Beta

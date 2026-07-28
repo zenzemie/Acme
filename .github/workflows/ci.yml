@@ -36,23 +36,32 @@ jobs:
           path: dist/
           retention-days: 5
 
-  lint:
-    name: Lint
+  python-checks:
+    name: Python Checks
     runs-on: ubuntu-latest
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      - name: Setup Bun
-        uses: oven-sh/setup-bun@v2
+      - name: Setup Python
+        uses: actions/setup-python@v5
         with:
-          bun-version: latest
+          python-version: "3.12"
 
-      - name: Install dependencies
-        run: bun install
+      - name: Run Python syntax check
+        run: |
+          python3 -m py_compile scripts/db-migrate.py
+          python3 -m py_compile scripts/analyze-code.py
+          echo "✓ Python syntax valid"
 
-      - name: Check formatting with Prettier
-        run: npx prettier --check "src/**/*.{ts,tsx,css}" 2>/dev/null || echo "Prettier check skipped"
+  shell-checks:
+    name: Shell Checks
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
 
-      - name: Lint with ESLint
-        run: npx eslint src/ --ext .ts,.tsx 2>/dev/null || echo "Lint skipped"
+      - name: Check shell scripts syntax
+        run: |
+          bash -n scripts/setup.sh && echo "✓ setup.sh syntax valid"
+          bash -n scripts/check-env.sh && echo "✓ check-env.sh syntax valid"

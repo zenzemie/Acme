@@ -50,14 +50,14 @@ const features = [
   {
     icon: Bot,
     title: "AI Software Engineer",
-    description: "Describe what you want to build in natural language and watch ForgeAI plan, code, debug, and deploy it autonomously.",
+    description: "Describe what you want to build in natural language and watch the platform plan, code, debug, and deploy it autonomously.",
     gradient: "from-indigo-500 to-purple-500",
     highlights: ["Natural language requests", "Autonomous execution", "Self-healing code", "Multi-file edits"],
   },
   {
     icon: Bug,
     title: "Repository Doctor",
-    description: "Paste any GitHub URL and ForgeAI automatically diagnoses startup failures, dependency issues, missing env vars, and broken configs.",
+    description: "Paste any GitHub URL and the platform automatically diagnoses startup failures, dependency issues, missing env vars, and broken configs.",
     gradient: "from-rose-500 to-orange-500",
     highlights: ["Instant diagnosis", "Dependency detection", "Env var discovery", "One-click fixes"],
   },
@@ -99,7 +99,7 @@ const features = [
   {
     icon: Puzzle,
     title: "Plugin Marketplace",
-    description: "Extend ForgeAI with community-built agents, workflows, integrations, templates, and deployment targets.",
+    description: "Extend with community-built agents, workflows, integrations, templates, and deployment targets.",
     gradient: "from-indigo-500 to-cyan-500",
     highlights: ["Community plugins", "Custom agents", "Workflow templates", "Theme support"],
   },
@@ -121,7 +121,7 @@ const stats = [
 
 const testimonials = [
   {
-    quote: "ForgeAI completely changed how our team ships software. The AI engineer alone saves us 20+ hours per week.",
+    quote: "The platform completely changed how our team ships software. The AI engineer alone saves us 20+ hours per week.",
     author: "Sarah Chen",
     role: "CTO, TechFlow",
     avatar: "SC",
@@ -141,19 +141,18 @@ const testimonials = [
 ];
 
 function AnimatedCodeBlock() {
-  const code = `// ForgeAI: Build a SaaS
-const forge = await ForgeAI.create({
-  apiKey: process.env.FORGE_API_KEY,
+  const code = `// Build a SaaS with the platform
+const app = await Platform.create({
+  name: "my-saas",
 });
 
-const result = await forge.build({
-  idea: "A task management SaaS",
-  features: ["auth", "teams", "real-time"],
-  deploy: true,
+await app.generate({
+  description: "A task management SaaS with teams",
+  features: ["auth", "realtime", "billing"],
 });
 
-console.log(result.url);
-// → https://my-saas.forge.app`;
+console.log(app.url);
+// → https://my-saas.app`;
 
   return (
     <div className="relative overflow-hidden rounded-2xl border bg-card/40 backdrop-blur-xl shadow-2xl">
@@ -163,7 +162,7 @@ console.log(result.url);
           <div className="h-3 w-3 rounded-full bg-yellow-500/70" />
           <div className="h-3 w-3 rounded-full bg-green-500/70" />
         </div>
-        <span className="ml-2 text-xs text-muted-foreground/60">forge-workspace — bash</span>
+        <span className="ml-2 text-xs text-muted-foreground/60">workspace — bash</span>
       </div>
       <pre className="overflow-x-auto p-4 text-sm">
         <code className="block font-mono leading-relaxed">
@@ -205,7 +204,7 @@ export default function Landing() {
             <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-primary shadow-lg shadow-primary/20">
               <Sparkles className="h-4 w-4 text-primary-foreground" />
             </div>
-            <span className="text-lg font-semibold">ForgeAI</span>
+            <span className="text-lg font-semibold">Acme</span>
             <Badge variant="secondary" className="ml-1 text-[10px]">
               Beta
             </Badge>
@@ -264,7 +263,7 @@ export default function Landing() {
           >
             <Badge variant="secondary" className="mb-4 px-4 py-1 text-xs">
               <Star className="mr-1.5 h-3 w-3 text-amber-400" />
-              Open-Source AI Software Engineering Platform
+              Full-Stack Application Platform
             </Badge>
           </motion.div>
 
@@ -285,8 +284,8 @@ export default function Landing() {
             transition={{ duration: 0.6, delay: 0.2, ease: "easeOut" }}
             className="mx-auto mb-10 max-w-2xl text-lg text-muted-foreground sm:text-xl"
           >
-            The open-source autonomous AI software engineering environment.
-            Plan, build, debug, deploy, and maintain software — all from natural language.
+            A full-stack application platform with AI-powered development tools.
+            Build, debug, deploy, and maintain software — all from natural language.
           </motion.p>
 
           <motion.div
@@ -299,11 +298,10 @@ export default function Landing() {
               size="xl"
               onClick={() => navigate("/auth")}
               className="group relative overflow-hidden"
-            >
-              <span className="relative z-10 flex items-center gap-2">
-                Start Building Free
-                <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5" />
-              </span>
+            >                <span className="relative z-10 flex items-center gap-2">
+                  Get Started Free
+                  <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5" />
+                </span>
               <div className="absolute inset-0 bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 opacity-0 transition-opacity group-hover:opacity-20" />
             </Button>
             <Button
@@ -328,6 +326,9 @@ export default function Landing() {
             </span>
             <span className="flex items-center gap-1">
               <Check className="h-3.5 w-3.5 text-emerald-400" /> Free & open source
+            </span>
+            <span className="flex items-center gap-1">
+              <Check className="h-3.5 w-3.5 text-emerald-400" /> MIT licensed
             </span>
             <span className="flex items-center gap-1">
               <Check className="h-3.5 w-3.5 text-emerald-400" /> Self-hostable
@@ -386,7 +387,7 @@ export default function Landing() {
               <span className="text-gradient">Infinite Possibilities.</span>
             </h2>
             <p className="mx-auto mt-4 max-w-2xl text-muted-foreground">
-              ForgeAI combines every tool a developer needs into one cohesive, elegant platform.
+              The platform combines every tool a developer needs into one cohesive workspace.
               No more context switching between a dozen different services.
             </p>
           </motion.div>
@@ -488,7 +489,7 @@ export default function Landing() {
               <span className="text-gradient">Built by the Community.</span>
             </h2>
             <p className="mx-auto mt-4 max-w-2xl text-muted-foreground">
-              Everything you need to use ForgeAI locally is free and open source.
+              Everything is free and open source.
               Premium features focus on convenience, not lock-in. No tricks, no bait-and-switch.
             </p>
             <div className="mt-10 flex flex-col items-center justify-center gap-4 sm:flex-row">
@@ -520,7 +521,7 @@ export default function Landing() {
               Ready to Ship Faster?
             </h2>
             <p className="mx-auto mt-4 max-w-lg text-muted-foreground">
-              Join thousands of developers using ForgeAI to build better software, faster.
+              Build better software, faster.
               It's free, it's open source, and it's waiting for you.
             </p>
             <div className="mt-10 flex flex-col items-center justify-center gap-4 sm:flex-row">
@@ -549,10 +550,10 @@ export default function Landing() {
                 <div className="flex h-7 w-7 items-center justify-center rounded-lg bg-primary shadow-lg shadow-primary/20">
                   <Sparkles className="h-3.5 w-3.5 text-primary-foreground" />
                 </div>
-                <span className="font-semibold">ForgeAI</span>
+                <span className="font-semibold">Acme</span>
               </div>
               <p className="text-sm text-muted-foreground">
-                The open-source AI software engineering platform.
+                Full-stack application platform.
               </p>
             </div>
             <div>
@@ -584,7 +585,7 @@ export default function Landing() {
             </div>
           </div>
           <div className="mt-12 border-t border-border/50 pt-6 text-center text-xs text-muted-foreground">
-            &copy; {new Date().getFullYear()} ForgeAI. Open source under the MIT License.
+            &copy; {new Date().getFullYear()} Acme. Open source under the MIT License.
           </div>
         </div>
       </footer>

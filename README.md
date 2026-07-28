@@ -1,48 +1,40 @@
 <div align="center">
   <br/>
-  <img src="public/forge.svg" alt="ForgeAI Logo" width="80" height="80" />
-  <h1 align="center">🔥 ForgeAI</h1>
+  <img src="public/icon.svg" alt="Logo" width="80" height="80" />
+  <h1 align="center">Acme Platform</h1>
   <p align="center">
-    <strong>The Open-Source AI Software Engineering Platform</strong>
-    <br />
-    Plan · Build · Debug · Deploy · Maintain — All from natural language.
+    <strong>Full-stack application platform with AI-powered development tools</strong>
   </p>
 
   <p align="center">
     <a href="https://github.com/zenzemie/Acme/actions/workflows/ci.yml">
-      <img src="https://github.com/zenzemie/Acme/actions/workflows/ci.yml/badge.svg" alt="CI Status" />
+      <img src="https://github.com/zenzemie/Acme/actions/workflows/ci.yml/badge.svg" alt="CI" />
     </a>
     <a href="https://github.com/zenzemie/Acme/actions/workflows/deploy.yml">
-      <img src="https://github.com/zenzemie/Acme/actions/workflows/deploy.yml/badge.svg" alt="Deploy Status" />
+      <img src="https://github.com/zenzemie/Acme/actions/workflows/deploy.yml/badge.svg" alt="Deploy" />
     </a>
     <a href="LICENSE">
-      <img src="https://img.shields.io/badge/license-MIT-blue.svg" alt="License" />
+      <img src="https://img.shields.io/badge/license-MIT-blue.svg" alt="MIT" />
     </a>
     <a href="https://www.typescriptlang.org/">
-      <img src="https://img.shields.io/badge/typescript-5.6-brightgreen" alt="TypeScript" />
+      <img src="https://img.shields.io/badge/typescript-5.6-brightgreen" alt="TS" />
     </a>
     <a href="https://react.dev/">
       <img src="https://img.shields.io/badge/react-18.3-61DAFB?logo=react" alt="React" />
     </a>
-    <a href="https://convex.dev/">
-      <img src="https://img.shields.io/badge/convex-1.17-purple" alt="Convex" />
-    </a>
     <a href="https://bun.sh/">
       <img src="https://img.shields.io/badge/bun-1.3-black?logo=bun" alt="Bun" />
     </a>
-    <img src="https://img.shields.io/badge/PRs-welcome-brightgreen" alt="PRs Welcome" />
+    <img src="https://img.shields.io/badge/PRs-welcome-brightgreen" alt="PRs" />
     <img src="https://img.shields.io/github/stars/zenzemie/Acme?style=social" alt="Stars" />
   </p>
 
-  <br/>
-
   <p align="center">
-    <a href="#-features">Features</a> ·
-    <a href="#-getting-started">Getting Started</a> ·
-    <a href="#-tech-stack">Tech Stack</a> ·
-    <a href="#-project-structure">Structure</a> ·
-    <a href="#-contributing">Contributing</a> ·
-    <a href="#-license">License</a>
+    <a href="#features">Features</a> ·
+    <a href="#getting-started">Getting Started</a> ·
+    <a href="#tech-stack">Tech Stack</a> ·
+    <a href="#project-structure">Structure</a> ·
+    <a href="#contributing">Contributing</a>
   </p>
 
   <br/>
@@ -50,135 +42,79 @@
 
 ---
 
-## ✨ Features
+## Features
 
-| Feature | Description |
-|---|---|
-| 🤖 **AI Software Engineer** | Natural language → working software. Describe, and ForgeAI builds it. |
-| 🔬 **Repository Doctor** | Paste any GitHub URL — auto-diagnose startup failures, deps, env vars. |
-| 🏗️ **Architecture Intelligence** | Full codebase analysis: diagrams, dependency maps, security reports. |
-| 👀 **AI PR Review** | Automated review for bugs, security, performance, style. |
-| 📝 **Documentation Generator** | READMEs, API docs, setup guides, changelogs — auto-generated. |
-| 📋 **AI Planning** | Turn ideas into milestones, task lists, and timelines. |
-| 🚀 **Deployment Engine** | One-click deploy to any cloud + auto CI/CD pipelines. |
-| 🧩 **Plugin Marketplace** | Extend with community agents, workflows, themes, integrations. |
-| 💼 **LeadForge** | Discover & organize business leads with intelligent outreach. |
+- **AI Software Engineer** — Natural language to working software
+- **Repository Doctor** — Auto-diagnose startup failures, deps, env vars
+- **Architecture Intelligence** — Codebase analysis with diagrams & reports
+- **AI PR Review** — Automated reviews for bugs, security, performance
+- **Documentation Generator** — READMEs, API docs, changelogs
+- **AI Planning** — Milestones, task lists, and timelines from ideas
+- **Deployment Engine** — CI/CD pipelines and cloud deployment
+- **Plugin Marketplace** — Extend with community-built plugins
+- **LeadForge** — Business discovery and CRM tools
 
-## 🚀 Getting Started
-
-### Prerequisites
-
-- [Bun](https://bun.sh/) >= 1.3
-- [Node.js](https://nodejs.org/) >= 18 (for Convex)
-
-### Quick Start
+## Getting Started
 
 ```bash
-# Clone the repository
 git clone https://github.com/zenzemie/Acme.git
 cd Acme
-
-# Install dependencies
 bun install
-
-# Set up Convex (local dev)
 bun convex dev --once
-
-# Start the dev server
 bun run dev
 ```
 
-The app will be available at `http://localhost:5173` (or the port Freebuff assigns).
-
-### Environment Variables
-
-Create a `.env.local` file (Convex generates this automatically for local dev):
-
-| Variable | Description |
-|---|---|
-| `VITE_CONVEX_URL` | Convex deployment URL (auto-generated) |
-| `VITE_CONVEX_SITE_URL` | Convex site URL (auto-generated) |
-
-For AI features, add your provider key:
-
-| Variable | Description |
-|---|---|
-| `OPENAI_API_KEY` | OpenAI API key (for AI features) |
-| `ANTHROPIC_API_KEY` | Anthropic API key (alternative) |
-
-## 🛠️ Tech Stack
+## Tech Stack
 
 | Layer | Technology |
 |---|---|
-| **Frontend** | React 18, TypeScript, Tailwind CSS, Framer Motion |
-| **Backend / Database** | Convex (reactive real-time backend) |
-| **Auth** | Convex Auth (email, GitHub OAuth, Google OAuth) |
-| **UI Library** | shadcn/ui (Radix primitives + Tailwind) |
-| **Build Tool** | Vite 6 |
-| **Package Manager** | Bun 1.3 |
-| **CI/CD** | GitHub Actions |
+| Frontend | React 18, TypeScript, Tailwind CSS, Framer Motion |
+| Backend | Convex (reactive real-time) |
+| Auth | Convex Auth |
+| UI | shadcn/ui (Radix + Tailwind) |
+| Build | Vite 6 |
+| Package | Bun 1.3 |
+| CI/CD | GitHub Actions |
 
-## 📁 Project Structure
+## Project Structure
 
 ```
 src/
-├── convex/               # Convex backend (schema, auth config)
+├── convex/               # Backend schema & auth
 ├── components/
-│   ├── layout/           # Sidebar, DashboardLayout, CommandPalette
-│   └── ui/               # shadcn/ui component primitives
-├── hooks/                # useTheme, useCommandPalette, useToast
-├── lib/                  # Utility functions (cn, absoluteUrl)
-├── pages/                # All app pages
-│   ├── Landing.tsx       # Landing page
-│   ├── Auth.tsx          # Auth (sign-in / sign-up)
-│   ├── Dashboard.tsx     # Main dashboard
-│   ├── Workspace.tsx     # AI Workspace chat interface
-│   ├── RepoDoctor.tsx    # Repository diagnostics
-│   ├── Architecture.tsx  # Architecture intelligence
-│   ├── PRReview.tsx      # AI PR review
-│   ├── DocsGenerator.tsx # Documentation generator
-│   ├── Planning.tsx      # AI planning
-│   ├── Deployments.tsx   # Deployment management
-│   ├── Marketplace.tsx   # Plugin marketplace
-│   └── LeadForge.tsx     # Lead generation & CRM
-├── App.tsx               # Router + auth protection
-├── main.tsx              # Entry point with providers
-└── index.css             # Global styles + theme
+│   ├── layout/           # Navigation, sidebar, command palette
+│   └── ui/               # shadcn/ui primitives
+├── hooks/                # React hooks
+├── lib/                  # Utilities
+├── pages/                # Application pages (12 routes)
+├── App.tsx               # Router + auth
+├── main.tsx              # Entry point
+└── index.css             # Global styles
+
+scripts/                  # Python & Shell tools
+tools/go-tool/            # Go tooling
 ```
 
-## 🤝 Contributing
+## Language Diversity
 
-We welcome contributions! Here's how to help:
+This repository intentionally uses multiple programming languages:
 
-1. **Fork** the repository
-2. **Create a feature branch**: `git checkout -b feature/my-idea`
-3. **Commit** your changes: `git commit -m 'Add my awesome feature'`
-4. **Push**: `git push origin feature/my-idea`
-5. **Open a Pull Request**
+| Language | Purpose |
+|---|---|
+| TypeScript / JavaScript | Main application code |
+| Python | Code analysis & migration tools |
+| Go | CLI tools for repo maintenance |
+| Shell (Bash) | Setup & deployment scripts |
+| Dockerfile | Containerization |
+| CSS | Styling |
+| HTML | Entry point |
+| YAML | CI/CD configuration |
+| Makefile | Build automation |
 
-### Development
+## Contributing
 
-```bash
-# Type check
-bun tsc --noEmit
+See [CONTRIBUTING.md](CONTRIBUTING.md) for guidelines.
 
-# Build
-bun run build
+## License
 
-# Preview production build
-bun run preview
-```
-
-## 📄 License
-
-This project is **100% open source** under the [MIT License](LICENSE).
-
-Everything required to use ForgeAI locally is free. Premium offerings (hosted cloud, collaboration, enterprise management) focus on convenience, not lock-in.
-
----
-
-<div align="center">
-  <sub>Built with ❤️ by the ForgeAI community</sub>
-  <br/>
-  <sub>⭐ Star us on GitHub — it helps!</sub>
-</div>
+MIT — see [LICENSE](LICENSE).

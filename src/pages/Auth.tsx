@@ -50,9 +50,9 @@ export default function AuthPage() {
               <Sparkles className="h-6 w-6 text-primary-foreground" />
             </div>
           </div>
-          <h1 className="text-2xl font-bold">Welcome to ForgeAI</h1>
+          <h1 className="text-2xl font-bold">Welcome</h1>
           <p className="mt-1 text-sm text-muted-foreground">
-            The open-source AI software engineering platform
+            Sign in to continue
           </p>
         </div>
 
@@ -136,7 +136,7 @@ export default function AuthPage() {
         </Card>
 
         <p className="mt-6 text-center text-xs text-muted-foreground">
-          ForgeAI is 100% open source.{" "}
+          100% open source.{" "}
           <a href="#" className="underline underline-offset-4 hover:text-foreground">
             View on GitHub
           </a>

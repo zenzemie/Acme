@@ -1,0 +1,25 @@
+version: "3.8"
+
+services:
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "80:80"
+    environment:
+      - NODE_ENV=production
+
+  # For local Convex development
+  convex:
+    image: node:20-alpine
+    working_dir: /app
+    volumes:
+      - .:/app
+      - convex-data:/app/.convex
+    command: sh -c "npx convex dev --once && tail -f /dev/null"
+    ports:
+      - "3210:3210"
+
+volumes:
+  convex-data:

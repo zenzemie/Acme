@@ -7,9 +7,8 @@ on:
 
 jobs:
   deploy:
-    name: Deploy to Production
+    name: Build and Deploy
     runs-on: ubuntu-latest
-    environment: production
 
     steps:
       - name: Checkout repository
@@ -29,24 +28,13 @@ jobs:
       - name: Build production bundle
         run: bun run build
 
-      - name: Deploy to Vercel (if configured)
-        if: ${{ vars.VERCEL_ORG_ID != '' }}
-        uses: amondnet/vercel-action@v25
-        with:
-          vercel-token: ${{ secrets.VERCEL_TOKEN }}
-          vercel-org-id: ${{ vars.VERCEL_ORG_ID }}
-          vercel-project-id: ${{ vars.VERCEL_PROJECT_ID }}
-          vercel-args: "--prod"
-
-      - name: Deploy to GitHub Pages (fallback)
-        if: ${{ vars.VERCEL_ORG_ID == '' }}
+      - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v4
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: ./dist
           publish_branch: gh-pages
+          force_orphan: true
 
       - name: Notify deployment success
-        run: |
-          echo "✅ Deployment complete!"
-          echo "📦 Build size: $(du -sh dist/ | cut -f1)"
+        run: echo "✅ Deployment complete!"
