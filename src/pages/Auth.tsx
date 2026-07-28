@@ -1,11 +1,12 @@
-import { useState } from "react";
+import { useState, useCallback } from "react";
 import { useNavigate, useSearchParams } from "react-router-dom";
-import { motion, AnimatePresence } from "framer-motion";
+import { motion } from "framer-motion";
 import { useConvexAuth } from "convex/react";
-import { Sparkles, Github, Mail, ArrowLeft, Eye, EyeOff } from "lucide-react";
+import { useAuthActions } from "@convex-dev/auth/react";
+import { Sparkles, Github, Mail, ArrowLeft, Loader2 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
+import { Card, CardContent, CardHeader } from "@/components/ui/card";
 import { cn } from "@/lib/utils";
 
 export default function AuthPage() {
@@ -13,13 +14,59 @@ export default function AuthPage() {
   const [searchParams] = useSearchParams();
   const returnTo = searchParams.get("returnTo") || "/dashboard";
   const { isAuthenticated } = useConvexAuth();
+  const { signIn } = useAuthActions();
   const [mode, setMode] = useState<"signin" | "signup">("signin");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [confirmPassword, setConfirmPassword] = useState("");
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [error, setError] = useState<string | null>(null);
 
   // Redirect if already authenticated
   if (isAuthenticated) {
     navigate(returnTo, { replace: true });
     return null;
   }
+
+  const switchMode = useCallback((newMode: "signin" | "signup") => {
+    setMode(newMode);
+    setEmail("");
+    setPassword("");
+    setConfirmPassword("");
+    setError(null);
+  }, []);
+
+  const handleEmailAuth = useCallback(async () => {
+    if (!email.trim() || !password.trim()) {
+      setError("Email and password are required");
+      return;
+    }
+    if (mode === "signup" && password !== confirmPassword) {
+      setError("Passwords do not match");
+      return;
+    }
+    setIsSubmitting(true);
+    setError(null);
+    try {
+      await signIn(mode, { email, password, flow: mode });
+    } catch (err: any) {
+      setError(err?.message || "Authentication failed. Please try again.");
+    } finally {
+      setIsSubmitting(false);
+    }
+  }, [email, password, confirmPassword, mode, signIn]);
+
+  const handleOAuth = useCallback(async (provider: string) => {
+    setIsSubmitting(true);
+    setError(null);
+    try {
+      await signIn(provider);
+    } catch (err: any) {
+      setError(err?.message || `${provider} authentication failed.`);
+    } finally {
+      setIsSubmitting(false);
+    }
+  }, [signIn]);
 
   return (
     <div className="relative flex min-h-screen flex-col items-center justify-center overflow-hidden bg-background p-4">
@@ -60,7 +107,7 @@ export default function AuthPage() {
           <CardHeader className="pb-4">
             <div className="flex rounded-lg bg-muted p-1">
               <button
-                onClick={() => setMode("signin")}
+                onClick={() => switchMode("signin")}
                 className={cn(
                   "flex-1 rounded-md px-3 py-1.5 text-sm font-medium transition-all",
                   mode === "signin" ? "bg-background text-foreground shadow-sm" : "text-muted-foreground hover:text-foreground",
@@ -69,7 +116,7 @@ export default function AuthPage() {
                 Sign In
               </button>
               <button
-                onClick={() => setMode("signup")}
+                onClick={() => switchMode("signup")}
                 className={cn(
                   "flex-1 rounded-md px-3 py-1.5 text-sm font-medium transition-all",
                   mode === "signup" ? "bg-background text-foreground shadow-sm" : "text-muted-foreground hover:text-foreground",
@@ -82,12 +129,12 @@ export default function AuthPage() {
           <CardContent className="space-y-4">
             {/* Social auth buttons */}
             <div className="space-y-2">
-              <Button variant="outline" className="w-full" size="lg">
-                <Github className="mr-2 h-4 w-4" />
+              <Button variant="outline" className="w-full" size="lg" onClick={() => handleOAuth("github")} disabled={isSubmitting}>
+                {isSubmitting ? <Loader2 className="mr-2 h-4 w-4 animate-spin" /> : <Github className="mr-2 h-4 w-4" />}
                 Continue with GitHub
               </Button>
-              <Button variant="outline" className="w-full" size="lg">
-                <Mail className="mr-2 h-4 w-4" />
+              <Button variant="outline" className="w-full" size="lg" onClick={() => handleOAuth("google")} disabled={isSubmitting}>
+                {isSubmitting ? <Loader2 className="mr-2 h-4 w-4 animate-spin" /> : <Mail className="mr-2 h-4 w-4" />}
                 Continue with Google
               </Button>
             </div>
@@ -101,24 +148,31 @@ export default function AuthPage() {
               </div>
             </div>
 
+            {error && (
+              <div className="rounded-lg bg-destructive/10 border border-destructive/20 p-3">
+                <p className="text-xs text-destructive">{error}</p>
+              </div>
+            )}
+
             <div className="space-y-3">
               <div className="space-y-1">
                 <label className="text-sm font-medium">Email</label>
-                <Input type="email" placeholder="you@example.com" />
+                <Input type="email" placeholder="you@example.com" value={email} onChange={(e) => setEmail(e.target.value)} />
               </div>
               <div className="space-y-1">
                 <label className="text-sm font-medium">Password</label>
-                <Input type="password" placeholder="••••••••" />
+                <Input type="password" placeholder="••••••••" value={password} onChange={(e) => setPassword(e.target.value)} onKeyDown={(e) => e.key === "Enter" && handleEmailAuth()} />
               </div>
               {mode === "signup" && (
                 <div className="space-y-1">
                   <label className="text-sm font-medium">Confirm Password</label>
-                  <Input type="password" placeholder="••••••••" />
+                  <Input type="password" placeholder="••••••••" value={confirmPassword} onChange={(e) => setConfirmPassword(e.target.value)} />
                 </div>
               )}
             </div>
 
-            <Button className="w-full" size="lg">
+            <Button className="w-full" size="lg" onClick={handleEmailAuth} disabled={isSubmitting}>
+              {isSubmitting ? <Loader2 className="mr-2 h-4 w-4 animate-spin" /> : null}
               {mode === "signin" ? "Sign In" : "Create Account"}
             </Button>
 
