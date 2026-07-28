@@ -47,6 +47,7 @@ export default function RepoDoctor() {
     if (!repoUrl.trim()) return;
     setStatus("scanning");
     setProgress(0);
+    // Reset any previous results by clearing intervalId
     const interval = setInterval(() => {
       setProgress((p) => {
         if (p >= 100) {
@@ -57,6 +58,14 @@ export default function RepoDoctor() {
         return p + 2;
       });
     }, 80);
+  };
+
+  // Reset to idle when URL changes
+  const handleUrlChange = (value: string) => {
+    setRepoUrl(value);
+    if (status === "complete" || status === "error") {
+      setStatus("idle");
+    }
   };
 
   const sampleIssues: Issue[] = status === "complete" ? [
@@ -96,7 +105,7 @@ export default function RepoDoctor() {
             <Github className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-muted-foreground" />
             <Input
               value={repoUrl}
-              onChange={(e) => setRepoUrl(e.target.value)}
+              onChange={(e) => handleUrlChange(e.target.value)}
               placeholder="https://github.com/username/repository"
               className="pl-9 h-12"
               onKeyDown={(e) => e.key === "Enter" && handleDiagnose()}
